@@ -4,7 +4,7 @@ option go_package = "/internal/pkg/genproto";
 
 package protos;
 
-import "void.proto";
+import "gmailapp-submodule/void.proto";
 
 
 service UserService {

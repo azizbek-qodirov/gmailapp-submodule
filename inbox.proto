@@ -4,8 +4,8 @@ option go_package = "/internal/pkg/genproto";
 
 package protos;
 
-import "void.proto";
-import "outbox.proto";
+import "gmailapp-submodule/void.proto";
+import "gmailapp-submodule/outbox.proto";
 
 service InboxService {
     rpc GetByID(ByID) returns (InboxMessageGetRes);
@@ -20,7 +20,7 @@ service InboxService {
 
 message InboxMessageGetRes {
     string id = 1;
-    OutboxMessage outbox = 2;
+    OutboxMessageGetRes outbox = 2;
     string receiver_id = 3;
     string type = 4;
     bool is_spam = 5;

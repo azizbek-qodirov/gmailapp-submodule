@@ -4,8 +4,8 @@ option go_package = "/internal/pkg/genproto";
 
 package protos;
 
-import "void.proto";
-import "outbox.proto";
+import "gmailapp-submodule/void.proto";
+import "gmailapp-submodule/outbox.proto";
 
 
 service DraftService {

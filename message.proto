@@ -5,16 +5,16 @@ option go_package = "/internal/pkg/genproto";
 package protos;
 
 
-service MessageService {
+// service MessageService {
   // rpc SearchMessages(MessagesSearchReq) returns (MessagesSearchRes);
-}
+// }
 
-message MessagesSearchReq {
-  string query = 1;
-  string user_id = 2;
-  string date_from = 3;
-  string date_to = 4;
-}
+// message MessagesSearchReq {
+//   string query = 1;
+//   string user_id = 2;
+//   string date_from = 3;
+//   string date_to = 4;
+// }
 
 
 message Attachment {
