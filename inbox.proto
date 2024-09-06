@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option go_package = "/internal/pkg/genproto";
+
+package protos;
+
+import "void.proto";
+import "outbox.proto";
+
+service InboxService {
+    rpc GetByID(ByID) returns (InboxMessageGetRes);
+    rpc GetAll(InboxMessageGetAllReq) returns (InboxMessagesGetAllRes);
+    rpc MoveToTrash(ByID) returns (Void);
+    rpc Delete(ByID) returns (Void);
+    rpc MarkAsRead(ByID) returns (Void);
+    rpc MarkAsSpam(ByID) returns (Void);
+    rpc StarMessage(ByID) returns (Void);
+    rpc ArchiveMessage(ByID) returns (Void);
+}
+
+message InboxMessageGetRes {
+    string id = 1;
+    OutboxMessage outbox = 2;
+    string receiver_id = 3;
+    string type = 4;
+    bool is_spam = 5;
+    bool is_archived = 6;
+    bool is_starred = 7;
+  
+    int64 read_at = 8;
+    string deleted_at = 9;
+};
+
+message InboxMessageGetAllBody{
+    string sender_id = 1;
+    string type = 2;
+    bool is_spam = 3;
+    bool is_archived = 4;
+    bool is_starred = 5;
+    
+    string sent_from = 6;
+    string sent_to = 7;
+    bool unread_only = 8;
+}
+
+message InboxMessageGetAllReq {
+    InboxMessageGetAllBody body = 1;
+    Pagination pagination = 2;
+}
+
+message InboxMessagesGetAllRes {
+    repeated InboxMessageGetRes messages = 1;
+    Pagination pagination = 10;
+}
