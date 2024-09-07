@@ -4,17 +4,16 @@ option go_package = "/internal/pkg/genproto";
 
 package protos;
 
-import "gmailapp-submodule/outbox.proto";
 import "gmailapp-submodule/void.proto";
 
 service AttachmentService {
   rpc Create(AttachmentCreateReq) returns (AttachmentCreateRes);
-  rpc GetAll(AttachmentGetAllReq) returns (AttachmentGetRes);
+  rpc GetByID(ByID) returns (AttachmentGetRes);
+  rpc GetAll(AttachmentGetAllReq) returns (AttachmentGetAllRes);
   rpc Delete(ByID) returns (Void);
 }
 
 message AttachmentCreateReq {
-  string outbox_id = 1;
   string file_url = 2;
   string file_name = 3;
   string file_size = 5;
@@ -23,7 +22,6 @@ message AttachmentCreateReq {
 
 message AttachmentGetRes {
   string id = 1;
-  OutboxMessageGetRes outbox =  2;
   string file_url = 3;
   string file_name = 4;
   string mime_type = 5;
@@ -32,10 +30,6 @@ message AttachmentGetRes {
 
 message AttachmentGetAllReq {
   string outbox_id = 1;
-  string mime_type = 2;
-  string created_from = 3;
-  string created_to = 4;
-  Pagination pagination = 5;
 }
 
 message AttachmentGetAllRes {
