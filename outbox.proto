@@ -36,7 +36,7 @@ message OutboxMessageGetRes {
     optional string body = 3;
     UserGetRes sender = 4;
     Receivers receivers = 5;
-    repeated string attachment_ids = 6;
+    optional AttachmentIdsWrapper attachment_ids = 6;
     optional bool is_draft = 7;
     optional bool is_archived = 8;
     optional bool is_starred = 9;
@@ -45,13 +45,19 @@ message OutboxMessageGetRes {
     optional string deleted_at = 11;
 };
 
+message AttachmentIdsWrapper {
+    repeated string attachment_ids = 1;
+}
+
+
 message OutboxMessagesGetAllBody {
     string query = 1;
     bool is_archived = 2;
     bool is_starred = 3;
+    bool is_draft = 4;
 
-    string sent_from = 4;
-    string sent_to = 5;
+    string sent_from = 5;
+    string sent_to = 6;
 }
 
 message OutboxMessagesGetAllReq {
@@ -64,9 +70,9 @@ message OutboxMessagesGetAllRes {
 }
 
 message Receivers {
-    MessageSendTo to = 2;
-    MessageSendCC cc = 3;
-    MessageSendBCC bcc = 4;
+    optional MessageSendTo to = 2;
+    optional MessageSendCC cc = 3;
+    optional MessageSendBCC bcc = 4;
 }
 
 message MessageSendTo {
