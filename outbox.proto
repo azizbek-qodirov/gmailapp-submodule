@@ -70,15 +70,15 @@ message Receivers {
 }
 
 message MessageSendTo {
-    repeated string email = 1;
+    repeated string emails = 1;
 }
 
 message MessageSendCC {
-    repeated string email = 2;
+    repeated string emails = 2;
 }
 
 message MessageSendBCC {
-    repeated string email = 2;
+    repeated string emails = 2;
 }
 
 message MessageSentRes {
