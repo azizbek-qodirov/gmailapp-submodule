@@ -32,17 +32,17 @@ message OutboxMessageSentReq {
 
 message OutboxMessageGetRes {
     string id = 1;
-    string subject = 2;
-    string body = 3;
+    optional string subject = 2;
+    optional string body = 3;
     UserGetRes sender = 4;
     Receivers receivers = 5;
     repeated string attachment_ids = 6;
-    bool is_draft = 7;
-    bool is_archived = 8;
-    bool is_starred = 9;
+    optional bool is_draft = 7;
+    optional bool is_archived = 8;
+    optional bool is_starred = 9;
   
-    string sent_at = 10;
-    string deleted_at = 11;
+    optional  string sent_at = 10;
+    optional string deleted_at = 11;
 };
 
 message OutboxMessagesGetAllBody {
@@ -82,7 +82,7 @@ message MessageSendBCC {
 }
 
 message MessageSentRes {
-    int64 total_sent = 1;
-    int64 total_failed = 2;
+    optional int64 total_sent = 1;
+    optional int64 total_failed = 2;
     repeated string failed_emails = 3;
 }
