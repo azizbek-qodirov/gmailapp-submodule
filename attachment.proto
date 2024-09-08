@@ -10,6 +10,7 @@ service AttachmentService {
   rpc Create(AttachmentCreateReq) returns (AttachmentCreateRes);
   rpc GetByID(ByID) returns (AttachmentGetRes);
   rpc GetAll(AttachmentGetAllReq) returns (AttachmentGetAllRes);
+  rpc GetMyUploads(ByID) returns (AttachmentGetAllRes);
   rpc Delete(ByID) returns (Void);
 }
 
