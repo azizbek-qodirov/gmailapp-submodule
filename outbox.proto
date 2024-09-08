@@ -41,7 +41,7 @@ message OutboxMessageGetRes {
     optional bool is_archived = 8;
     optional bool is_starred = 9;
   
-    optional  string sent_at = 10;
+    optional string sent_at = 10;
     optional string deleted_at = 11;
 };
 

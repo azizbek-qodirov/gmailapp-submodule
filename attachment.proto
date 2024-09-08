@@ -14,6 +14,7 @@ service AttachmentService {
 }
 
 message AttachmentCreateReq {
+  string user_id = 1;
   string file_url = 2;
   string file_name = 3;
   string file_size = 5;
@@ -22,6 +23,7 @@ message AttachmentCreateReq {
 
 message AttachmentGetRes {
   string id = 1;
+  string user_id = 2;
   string file_url = 3;
   string file_name = 4;
   string mime_type = 5;
