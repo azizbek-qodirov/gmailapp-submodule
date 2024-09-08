@@ -68,6 +68,10 @@ message OutboxMessagesGetAllReq {
 };
 
 message OutboxMessagesGetAllRes {
+    optional OutboxMessageGetAllResWrapper messages = 1;
+}
+
+message OutboxMessageGetAllResWrapper{
     repeated OutboxMessageGetRes messages = 1;
 }
 
