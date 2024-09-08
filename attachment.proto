@@ -11,7 +11,7 @@ service AttachmentService {
   rpc GetByID(ByID) returns (AttachmentGetRes);
   rpc GetAll(AttachmentGetAllReq) returns (AttachmentGetAllRes);
   rpc GetMyUploads(ByID) returns (AttachmentGetAllRes);
-  rpc Delete(ByID) returns (Void);
+  rpc Delete(ByID) returns (AttachmentDeleteRes);
 }
 
 message AttachmentCreateReq {
@@ -41,5 +41,6 @@ message AttachmentGetAllRes {
 }
 
 message AttachmentCreateRes {
-  string file_url = 1;
+  string file_id = 1;
+  string file_url = 2;
 }
