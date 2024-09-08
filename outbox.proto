@@ -62,8 +62,9 @@ message OutboxMessagesGetAllBody {
 }
 
 message OutboxMessagesGetAllReq {
-    OutboxMessagesGetAllBody body = 1;
-    Pagination pagination = 2;
+    string sender_id = 1;
+    OutboxMessagesGetAllBody body = 2;
+    Pagination pagination = 3;
 };
 
 message OutboxMessagesGetAllRes {
