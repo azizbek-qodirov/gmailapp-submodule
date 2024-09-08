@@ -20,15 +20,15 @@ service InboxService {
 
 message InboxMessageGetRes {
     string id = 1;
-    OutboxMessageGetRes outbox = 2;
-    string receiver_id = 3;
-    string type = 4;
-    bool is_spam = 5;
-    bool is_archived = 6;
-    bool is_starred = 7;
+    optional OutboxMessageGetRes outbox = 2;
+    optional string receiver_id = 3;
+    optional string type = 4;
+    optional bool is_spam = 5;
+    optional bool is_archived = 6;
+    optional bool is_starred = 7;
   
-    int64 read_at = 8;
-    string deleted_at = 9;
+    optional int64 read_at = 8;
+    optional string deleted_at = 9;
 };
 
 message InboxMessageGetAllBody{
