@@ -46,8 +46,9 @@ message InboxMessageGetAllBody{
 }
 
 message InboxMessageGetAllReq {
-    InboxMessageGetAllBody body = 1;
-    Pagination pagination = 2;
+    string receiver_id = 1;
+    InboxMessageGetAllBody body = 2;
+    Pagination pagination = 3;
 }
 
 message InboxMessagesGetAllRes {
