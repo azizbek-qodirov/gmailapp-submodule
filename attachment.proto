@@ -44,3 +44,7 @@ message AttachmentCreateRes {
   string file_id = 1;
   string file_url = 2;
 }
+
+message AttachmentDeleteRes {
+  string file_name = 1;
+}
