@@ -1,5 +1,4 @@
 push:
 	git add .
 	git commit -m "protos changed"
-	git push
-	cd ..
+	git push && cd ..
