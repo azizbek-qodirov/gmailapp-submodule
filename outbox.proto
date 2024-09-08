@@ -55,9 +55,10 @@ message OutboxMessagesGetAllBody {
     bool is_archived = 2;
     bool is_starred = 3;
     bool is_draft = 4;
+    bool is_trashed = 5;
 
-    string sent_from = 5;
-    string sent_to = 6;
+    string sent_from = 6;
+    string sent_to = 7;
 }
 
 message OutboxMessagesGetAllReq {
