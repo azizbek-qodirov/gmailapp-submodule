@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+option go_package = "/internal/pkg/genproto";
+
+package protos;
+
+import "gmailapp-submodule/void.proto";
+import "gmailapp-submodule/user.proto";
+
+
+service OutboxService {
+    rpc Send(OutboxMessageSentReq) returns (MessageSentRes);
+    rpc Get(ByID) returns (OutboxMessageGetRes);
+    rpc GetAll(OutboxMessagesGetAllReq) returns (OutboxMessagesGetAllRes);
+    rpc MoveToTrash(ByID) returns (Void);
+    rpc Delete(ByID) returns (Void);
+    rpc StarMessage(ByID) returns (Void);
+    rpc ArchiveMessage(ByID) returns (Void);
+};
+
+message OutboxMessageSentBody {
+    string subject = 2;
+    string body = 3;
+    Receivers receivers = 4;
+    repeated string attachment_ids = 5;
+};
+
+message OutboxMessageSentReq {
+    OutboxMessageSentBody body = 1;
+    string sender_id = 2; 
+};
+
+message OutboxMessageGetRes {
+    string id = 1;
+    optional string subject = 2;
+    optional string body = 3;
+    UserGetRes sender = 4;
+    Receivers receivers = 5;
+    optional AttachmentIdsWrapper attachment_ids = 6;
+    optional bool is_draft = 7;
+    optional bool is_archived = 8;
+    optional bool is_starred = 9;
+  
+    optional string sent_at = 10;
+    optional string deleted_at = 11;
+};
+
+message AttachmentIdsWrapper {
+    repeated string attachment_ids = 1;
+}
+
+
+message OutboxMessagesGetAllBody {
+    string query = 1;
+    bool is_archived = 2;
+    bool is_starred = 3;
+    bool is_draft = 4;
+    bool is_trashed = 5;
+
+    string sent_from = 6;
+    string sent_to = 7;
+}
+
+message OutboxMessagesGetAllReq {
+    string sender_id = 1;
+    OutboxMessagesGetAllBody body = 2;
+    Pagination pagination = 3;
+};
+
+message OutboxMessagesGetAllRes {
+    repeated OutboxMessageGetRes messages = 1;
+}
+
+message Receivers {
+    optional MessageSendTo to = 2;
+    optional MessageSendCC cc = 3;
+    optional MessageSendBCC bcc = 4;
+}
+
+message MessageSendTo {
+    repeated string emails = 1;
+}
+
+message MessageSendCC {
+    repeated string emails = 2;
+}
+
+message MessageSendBCC {
+    repeated string emails = 2;
+}
+
+message MessageSentRes {
+    optional int64 total_sent = 1;
+    optional int64 total_failed = 2;
+    repeated string failed_emails = 3;
+}

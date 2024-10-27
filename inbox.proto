@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+option go_package = "/internal/pkg/genproto";
+
+package protos;
+
+import "gmailapp-submodule/void.proto";
+import "gmailapp-submodule/outbox.proto";
+
+service InboxService {
+    rpc GetByID(ByID) returns (InboxMessageGetRes);
+    rpc GetAll(InboxMessageGetAllReq) returns (InboxMessagesGetAllRes);
+    rpc MoveToTrash(ByID) returns (Void);
+    rpc Delete(ByID) returns (Void);
+    rpc MarkAsRead(ByID) returns (Void);
+    rpc MarkAsSpam(ByID) returns (Void);
+    rpc StarMessage(ByID) returns (Void);
+    rpc ArchiveMessage(ByID) returns (Void);
+}
+
+message InboxMessageGetRes {
+    string id = 1;
+    optional OutboxMessageGetRes outbox = 2;
+    optional string receiver_id = 3;
+    optional string type = 4;
+    optional bool is_spam = 5;
+    optional bool is_archived = 6;
+    optional bool is_starred = 7;
+  
+    optional int64 read_at = 8;
+    optional string deleted_at = 9;
+};
+
+message InboxMessageGetAllBody{
+    string query = 1;
+    string sender_id = 2;
+    string type = 3;
+    bool is_spam = 4;
+    bool is_archived = 5;
+    bool is_starred = 6;
+    bool is_trashed = 7;
+    
+    string sent_from = 8;
+    string sent_to = 9;
+    bool unread_only = 10;
+}
+
+message InboxMessageGetAllReq {
+    string receiver_id = 1;
+    InboxMessageGetAllBody body = 2;
+    Pagination pagination = 3;
+}
+
+message InboxMessagesGetAllRes {
+    repeated InboxMessageGetRes messages = 1;
+    Pagination pagination = 10;
+}
