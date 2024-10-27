@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "/internal/pkg/genproto";
+
+package protos;
+
+import "gmailapp-submodule/void.proto";
+import "gmailapp-submodule/outbox.proto";
+
+
+service DraftService {
+    rpc Create(DraftCreateUpdateReq) returns (Void);
+    rpc Update(DraftCreateUpdateReq) returns (Void);
+    rpc Delete(ByID) returns (Void);
+    rpc SendDraft(ByID) returns (MessageSentRes);
+}
+
+message DraftCreateUpdateBody {
+    string subject = 2;
+    string body = 3;
+    Receivers receivers = 4;
+    repeated string attachment_ids = 5;
+}
+
+message DraftCreateUpdateReq {
+    DraftCreateUpdateBody body = 1;
+    string sender_id = 2;
+}
